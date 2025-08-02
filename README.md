@@ -1,127 +1,77 @@
-# Simple Chatbot
+<img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
-A simple real-time chatbot application built with Next.js and Socket.io that responds with "abc" to any user message.
 
-## Features
+# ScamBot 🤖
 
-- **Simple chat interface** - No login or room codes required
-- **Instant responses** - Bot replies "abc" to any message
-- **Real-time communication** using Socket.io
-- **Modern UI** with Tailwind CSS and shadcn/ui components
-- **Responsive design** for all devices
 
-## Tech Stack
+## Basic Details
+### Team Name: Meow
 
-- **Frontend**: Next.js 14 (App Router), React 18, Tailwind CSS
-- **Backend**: Node.js with Socket.io
-- **UI Components**: shadcn/ui
-- **Real-time Communication**: Socket.io
 
-## Project Structure
+### Team Members
+- Team Lead: Vasanth R - Govt Model Engineering College
+- Member 2: Niranjana Siju - Govt Model Engineering College
 
-```
-useless/
-├── app/                    # Next.js App Router
-│   ├── page.js            # Main chatbot interface
-│   ├── layout.js          # Root layout with metadata
-│   └── globals.css        # Global styles
-├── components/
-│   └── ui/                # shadcn/ui components
-│       ├── button.jsx
-│       ├── card.jsx
-│       └── input.jsx
-├── hooks/
-│   └── useSocket.js       # Main socket connection hook
-├── server.js              # Socket.io server with chatbot logic
-└── package.json           # Dependencies and scripts
-```
 
-## Getting Started
+### Project Description
+An intelligent bot that replies only with sarcasm and gifs.
 
-### Prerequisites
+### The Problem (that doesn't exist)
+Lack of an emotionally unavailable friend to text to .
 
-- Node.js 18+ and npm
+### The Solution (that nobody asked for)
+Made the ultimate bot that fills in the gap of your emotionally unavailable friend.
 
-### Installation
+## Technical Details
+### Technologies/Components Used
+For Software:
+- JavaScript
+- Next.js
+- socket.io, openai sdk
+- vs code, giphy api
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd useless
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the Socket.io server**
-   ```bash
-   node server.js
-   ```
-
-4. **Start the Next.js development server** (in a new terminal)
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser** and navigate to `http://localhost:3000`
-
-## Usage
-
-1. **Enter your name** to start chatting
-2. **Type any message** and press Enter or click Send
-3. **The bot will respond** with "abc" to every message
-4. **Chat history is preserved** during your session
-
-## API Reference
-
-### Socket Events
-
-#### Client to Server
-- `joinChat` - Join the chat with username
-- `sendMessage` - Send a message to the bot
-
-#### Server to Client
-- `chatJoined` - Confirmation of joining chat with message history
-- `newMessage` - New message from user or bot
-- `error` - Error message
-
-## How It Works
-
-The application uses Socket.io for real-time communication between the client and server. When a user sends a message:
-
-1. Client emits `sendMessage` event with the message data
-2. Server receives the message and broadcasts it to all clients
-3. Server automatically replies with "abc" after a 500ms delay
-4. Both messages appear in the chat interface in real-time
-
-## Development
-
-### Adding Features
-
-The chatbot logic is in `server.js`. To change the bot's response, modify the auto-reply section:
-
-```javascript
-// Auto-reply with "abc" after a short delay
-setTimeout(() => {
-  const botMessageObject = {
-    id: Date.now() + Math.random(),
-    username: 'bot',
-    message: 'abc', // Change this to customize the response
-    timestamp: new Date(),
-    type: 'bot'
-  }
-  // ... rest of the logic
-}, 500)
+### Implementation
+For Software:
+# Installation
+```bash
+cd client && npm i
+cd ../server && npm i
 ```
 
-### Styling
+# Run
+```bash
+cd client && npm run dev
+cd ../server && npm run dev
+```
 
-The app uses Tailwind CSS for styling. Main styles are in:
-- `app/globals.css` - Global styles and Tailwind imports
-- Component files - Tailwind classes applied directly
+### Project Documentation
+For Software:
 
-## License
+# Screenshots (Add at least 3)
+![Screenshot1](images/get_started_page.jpeg)
+This is the landing page where user submits their name before chatting with the bot.
 
-MIT License
+![Screenshot1](images/chat_page_2.jpeg)
+A sample conversation with the bot.
+
+![Screenshot1](images/chat_page_1.jpeg)
+A sample conversation with the bot.
+
+### Project Demo
+# Video
+[\[Add your demo video link here\]](https://drive.google.com/file/d/1UBrSyvZrnzyoM5-0PcpvjbC0llhAHLQW/view?usp=sharing)
+*This video shows how an user can starting chatting to our bot*
+
+
+
+## Team Contributions
+- Vasanth R: socket chatapp, ai integration
+- Niranjana Siju: idea, Giphy api integration
+
+---
+Made with ❤️ at TinkerHub Useless Projects 
+
+![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
+![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
+
+
