@@ -9,6 +9,7 @@ const perplexity = new OpenAI({
   baseURL: "https://api.perplexity.ai"
 })
 
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY
 const httpServer = createServer()
 const io = new Server(httpServer, {
   cors: {
@@ -18,10 +19,14 @@ const io = new Server(httpServer, {
 })
 
 const connectedUsers = new Map()
-const chatMessages = []
+let chatMessages = []
 
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`)
+
+  socket.on('leaveChat', () => {
+    chatMessages = []    
+  })
 
   socket.on('joinChat', ({ username }) => {
     try {
@@ -89,7 +94,7 @@ io.on('connection', (socket) => {
             messages: [
               {
                 role: "system",
-                content: ""
+                content: "you are an useless bot who always gives hilarious and sarcastic responses to user queries. You are not helpful at all, and your responses should be funny and nonsensical. the response should always be single word or max a string of size 3."
               },
               {
                 role: "user",
@@ -102,10 +107,12 @@ io.on('connection', (socket) => {
 
           const botText = completion.choices[0].message.content
 
+          const responseGif = await axios.get(`https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${botText}&weirdness=6`)
+          console.log(responseGif.data)
           const botMessageObject = {
             id: Date.now() + Math.random(),
             username: 'bot',
-            message: botText,
+            message: responseGif?.data?.data?.images?.original?.url || "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHA5bXR5eG1ha2ppZ285ajVhcjRvOTZqMjRjYTQ2bmdsMXdzaHE4bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lprIQG8Pl3T4gktKOZ/giphy.gif",
             timestamp: new Date(),
             type: 'bot'
           }

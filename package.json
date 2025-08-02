@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
     "next": "15.4.5",
+    "nodemon": "^3.1.10",
     "openai": "^5.11.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",

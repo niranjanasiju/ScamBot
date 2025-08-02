@@ -56,12 +56,12 @@ export default function Home() {
 
   if (!hasJoined) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gray-800 p-4">
         <div className="w-full max-w-md">
           <Card className="shadow-lg">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl font-bold text-gray-800">
-                Chatbot
+                ScamBot
               </CardTitle>
               <CardDescription className="text-gray-600">
                 Enter your name to start chatting with our bot
@@ -93,14 +93,7 @@ export default function Home() {
                 </Button>
               </form>
 
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <h3 className="font-semibold text-blue-800 mb-2">How it works:</h3>
-                <ul className="text-sm text-blue-700 space-y-1">
-                  <li>• Enter your name to begin</li>
-                  <li>• Chat with our friendly bot</li>
-                  <li>• Get instant responses</li>
-                </ul>
-              </div>
+              
             </CardContent>
           </Card>
         </div>
@@ -109,13 +102,13 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen bg-gray-600 p-4">
       <div className="max-w-4xl mx-auto h-screen flex flex-col">
         <Card className="mb-4">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-xl">Chatbot</CardTitle>
+                <CardTitle className="text-xl">ScamBot</CardTitle>
                 <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
                   <span>Welcome, {username}!</span>
                   <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
@@ -160,22 +153,24 @@ export default function Home() {
                         className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                           msg.username === username
                             ? 'bg-blue-500 text-white'
-                            : 'bg-gray-500 text-white'
+                            : 'bg-white text-white'
                         }`}
                       >
                         <div className="flex items-center gap-2 mb-1">
                           <span className={`text-xs font-medium ${
-                            msg.username === username ? 'text-blue-100' : 'text-gray-200'
+                            msg.username === username ? 'text-blue-100' : 'text-gray-400'
                           }`}>
                             {msg.username === username ? 'You' : 'Bot'}
                           </span>
                           <span className={`text-xs ${
-                            msg.username === username ? 'text-blue-200' : 'text-gray-300'
-                          }`}>
+                            msg.username === username ? 'text-blue-200' : 'text-gray-400'
+                          }`}s>
                             {new Date(msg.timestamp).toLocaleTimeString()}
                           </span>
                         </div>
-                        <p className="text-sm">{msg.message}</p>
+                        {username === msg.username ? (<p className="text-sm">{msg.message}</p>) : (
+                          <img src={msg.message} alt="Bot response" className="w-32 h-32 object-cover rounded-lg" />
+                        )}
                       </div>
                     )}
                   </div>

@@ -21,6 +21,7 @@ export const useSocket = (username) => {
     }
 
     const handleDisconnect = () => {
+      newSocket.emit('leaveChat')
       setIsConnected(false)
     }
 
