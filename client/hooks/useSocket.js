@@ -6,6 +6,7 @@ export const useSocket = (username) => {
   const [messages, setMessages] = useState([])
   const [isConnected, setIsConnected] = useState(false)
   const [connectionError, setConnectionError] = useState(null)
+  const [botIsTyping, setBotIsTyping] = useState(false)
 
   useEffect(() => {
     if (!username) return
@@ -23,6 +24,7 @@ export const useSocket = (username) => {
     const handleDisconnect = () => {
       newSocket.emit('leaveChat')
       setIsConnected(false)
+      setBotIsTyping(false) // Reset typing indicator on disconnect
     }
 
     const handleChatJoined = (data) => {
@@ -31,6 +33,10 @@ export const useSocket = (username) => {
 
     const handleNewMessage = (message) => {
       setMessages(prev => [...prev, message])
+      // If this is a bot message, stop the typing indicator
+      if (message.username === 'bot') {
+        setBotIsTyping(false)
+      }
     }
 
     const handleError = (error) => {
@@ -60,6 +66,8 @@ export const useSocket = (username) => {
     }
 
     socket.emit('sendMessage', messageData)
+    // Set bot typing indicator when user sends a message
+    setBotIsTyping(true)
     return true
   }, [socket, isConnected, username])
 
@@ -74,6 +82,7 @@ export const useSocket = (username) => {
     messages,
     isConnected,
     connectionError,
+    botIsTyping,
     sendMessage,
     disconnect
   }

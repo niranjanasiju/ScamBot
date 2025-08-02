@@ -19,7 +19,7 @@ export default function Home() {
   const [hasJoined, setHasJoined] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const { messages, isConnected, connectionError, sendMessage, disconnect } =
+  const { messages, isConnected, connectionError, botIsTyping, sendMessage, disconnect } =
     useSocket(username);
 
   const scrollToBottom = () => {
@@ -28,7 +28,7 @@ export default function Home() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, botIsTyping]);
 
   useEffect(() => {
     if (connectionError) {
@@ -211,6 +211,26 @@ export default function Home() {
                   </div>
                 ))
               )}
+              
+              {/* Bot typing indicator */}
+              {botIsTyping && (
+                <div className="flex justify-start">
+                  <div className="max-w-xs lg:max-w-md px-4 py-2 rounded-lg bg-white text-white">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-medium text-gray-400">Bot</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                      </div>
+                      <span className="text-xs text-gray-400 ml-2">Thinking...</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               <div ref={messagesEndRef} />
             </div>
 
@@ -240,3 +260,4 @@ export default function Home() {
     </div>
   );
 }
+
