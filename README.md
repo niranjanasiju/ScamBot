@@ -59,9 +59,9 @@ A sample conversation with the bot.
 
 ### Project Demo
 # Video
-[\[Add your demo video link here\]](https://drive.google.com/file/d/1UBrSyvZrnzyoM5-0PcpvjbC0llhAHLQW/view?usp=sharing)
-*This video shows how an user can starting chatting to our bot*
+[View Demo Video](https://drive.google.com/file/d/1UBrSyvZrnzyoM5-0PcpvjbC0llhAHLQW/view?usp=sharing)
 
+This video shows how a user can start chatting with our bot
 
 
 ## Team Contributions
