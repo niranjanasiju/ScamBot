@@ -2,6 +2,7 @@ const { createServer } = require('http')
 const { Server } = require('socket.io')
 const axios = require('axios')
 const OpenAI = require('openai')
+require('dotenv').config()
 
 // Initialize Perplexity client (using OpenAI SDK with custom base URL)
 const perplexity = new OpenAI({
@@ -42,6 +43,7 @@ io.on('connection', (socket) => {
       })
 
       console.log(`${username} joined the chat`)
+      chatMessages = []
 
     } catch (error) {
       console.error('Error joining chat:', error)
